@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Age From Now</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+<!--style>
+
+
+</style-->
+  </head>
+  
+    <body>
+	<div class="container">
+	<div class="row text-align-center">
+        <div class="col-md-offset-3 col-md-6">
+       <br><br> <h1>Age From Now</h1>
+        
+        <p class="lead">Enter your birth date or date from where you want to calculate days till today: <span id="date_example">(example January 27, 1997)</span></p>
+		
+        <form action="#" id="calculator" method="POST">
+		 <div class="row">
+			<div class="col-md-offset-4 col-md-4">
+				<input type="text" class="form-control" name="date_input" id="date_input" placeholder="In Format Like January 27,1997"/>
+			</div>
+			</br>
+		</div>	
+		            <input type="button" class="form-control" name="submit" value="Go!" onClick="getTime(true)"/>
+        </form>
+        </div>
+	</div>
+        <div id="results">
+		
+        </div>
+		<div id="demo">
+		</div>
+    </div>    
+
+        <script>
+												
+            function buildDisplayString(seconds, minutes, hours, days, months, years) {
+                return "<center><br><p>Age is:</p><h1>" + years + "<small>years</small>," + months + "<small>months</small>,</h1><h1>" + days + "<small>days</small>," + hours + "<small>hours</small>,</h1><h1>" + minutes + "<small>minutes</small>," + seconds + "<small>seconds</small>.</h1></p> </center>";
+
+            }
+            
+            function getYears(todaysDate, yourDate) {
+                var years = todaysDate.getFullYear() - yourDate.getFullYear();
+                var m = todaysDate.getMonth() - yourDate.getMonth();
+                if (m < 0 || (m === 0 && todaysDate.getDate() < yourDate.getDate())) {
+                    years--;
+                }
+                return years;
+            }
+            
+            function getMonths(todaysDate, yourDate) {
+                var d1 = todaysDate;
+                var d2 = yourDate;
+                if(todaysDate < yourDate) {
+                    d1 = yourDate;
+                    d2 = todaysDate;
+                }
+                var m = (d1.getFullYear() - d2.getFullYear()) * 12 + (d1.getMonth() - d2.getMonth());
+                if (d1.getDate() < d2.getDate()) {
+                    m--;
+                }
+                return m;
+            }
+            
+            function getDays(todaysDate, yourDate) {
+            
+            }
+            
+            function getTime(setupTimer) {
+                /* Get the user input */
+                var dateInput = document.getElementById('date_input');
+                var dateValue = dateInput.value;
+                
+                /* Create the Date Objects
+                (No longer uses date.js, in spite of its coolness.) */
+                var today = new Date();
+                console.log(today);
+				date1 = today.getDate();
+				month1 = today.getMonth();
+                var dryDate = new Date(dateValue);				//JS Timestamp
+				date2 = dryDate.getDate();
+				month2 = dryDate.getMonth();
+                var timeSince = today - dryDate;
+                if(date1==date2 && month1==month2)
+				{
+				document.getElementById('demo').innerHTML ="<center><h3><small>Today Is Your Birthday </small>&#8459;a&#8472;&#8472;y &#8492;i&real;t&#8459;day &#9787; </h3></center>";
+				
+				}
+                /* The calculations */
+                var seconds = Math.floor(timeSince /1000) % 60;
+                var minutes = Math.floor(timeSince / 1000/ 60) % 60;
+                var hours = Math.floor(timeSince / 1000 / 60 / 60) % 24
+                var days = Math.round(today.getDate() - dryDate.getDate());
+                var months = getMonths(today, dryDate) % 12;
+                var years = getYears(today, dryDate);
+                
+                if ( setupTimer ) {
+                	setInterval(testIntervals, 1000);
+                }
+		if ( !isNaN(timeSince) ) {
+			return document.getElementById('results').innerHTML=buildDisplayString(seconds, minutes, hours, days, months, years);
+                }
+            }
+        function testIntervals() {
+
+		getTime(false);
+            }
+			
+
+			//if (todaysDate==yourDate)
+				//{
+				//	return "<h1>H<small>appy</small> B<small>irthday</small></h1>";
+				//}
+        </script>
+		<div class="row text-align-center">
+        <div class="col-md-offset-4 col-md-4">
+          <hr>
+			<div class="footer">
+            <p>Made with ♥ by <a href="index.html">PrathmeshPure</a>.</p>
+			<center>
+			<input type="button" class="form-control2" name="submit" value="About Us" id="myBtn"/><center>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-body">
+    <span class="close">&times;</span>
+     <p class="lead">Created By</p>
+		<img src="pp.png" width="100" height="100">
+		<h3>Prathmesh Pure</h3>
+    </div>
+   </div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+            </div>
+		</div>
+      </div>
+    </body>
+    
+</html>

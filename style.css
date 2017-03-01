@@ -1,0 +1,9 @@
+.text-align-center {
+	text-align: center;
+}
+.faded-text {
+	opacity: 0.3;
+}
+#days-left-insert {
+	margin-bottom: 15px;
+}
