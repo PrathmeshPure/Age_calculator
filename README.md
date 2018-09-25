@@ -1,3 +1,3 @@
 # Age_calculator
-A simple java script age calulator with css
+A simple js, html, css age calulator application
 #Upload this source to phonegap to create a mobile application
